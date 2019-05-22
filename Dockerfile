@@ -1,5 +1,5 @@
 FROM ubuntu:18.04
-MAINTAINER Samuele Bistoletti <samuele.bistoletti@gmail.com>
+MAINTAINER LM <maliniakh@gmail.com>
 
 ENV DEBIAN_FRONTEND noninteractive
 ENV LANG C.UTF-8
@@ -33,6 +33,7 @@ RUN apt-get -y update && \
   curl \
   git \
   htop \
+  iputils-ping \
   gnupg \
   libfontconfig \
   mysql-client \
@@ -40,6 +41,7 @@ RUN apt-get -y update && \
   nano \
   net-tools \
   supervisor \
+  telnet \
   wget && \
  curl -sL https://deb.nodesource.com/setup_11.x | bash - && \
  apt-get install -y nodejs
@@ -89,6 +91,6 @@ COPY grafana/grafana.ini /etc/grafana/grafana.ini
 
 # Cleanup
 RUN apt-get clean && \
- rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+ rm -rf /tmp/* /var/tmp/*
 
 CMD ["/usr/bin/supervisord"]
